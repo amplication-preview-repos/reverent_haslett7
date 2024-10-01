@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ContentSelection {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  items       Json?
+  selectionId String?
+  updatedAt   DateTime @updatedAt
+}
+
+model LaunchRequest {
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  message        String?
+  resourceLinkId String?
+  updatedAt      DateTime @updatedAt
+  user           String?
+}
+
+model DeepLinking {
+  contentItems Json?
+  createdAt    DateTime @default(now())
+  data         Json?
+  id           String   @id @default(cuid())
+  updatedAt    DateTime @updatedAt
+}
+
+model GradePassback {
+  comment   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  score     Float?
+  updatedAt DateTime @updatedAt
+  userId    String?
+}
